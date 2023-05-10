@@ -2,21 +2,28 @@ import React, { useState, useEffect } from "react";
 import divider from "../assets/images/pattern-divider-desktop.svg";
 import dice from "../assets/images/icon-dice.svg";
 
-const AdviceBox = () => {
+interface AdviceObj {
+  advice: string;
+  id: number;
+}
+
+const AdviceBox: React.FC = () => {
   const [advice, setAdvice] = useState([]);
 
-  const fetchData = async () => {
-    await fetch(`https://api.adviceslip.com/advice`)
+  const fetchData = async (): Promise<AdviceObj[]> => {
+    return fetch(`https://api.adviceslip.com/advice`)
+      .then((response) => response.json())
+      .then((data) => setAdvice(data.slip))
       .then((response) => {
-        return response.json();
-      })
-      .then((data) => setAdvice(data.slip));
+        return response as unknown as AdviceObj[];
+      });
   };
 
   useEffect(() => {
     fetchData();
   }, []);
 
+  console.log(advice);
   const adviceText = Object.values(advice);
 
   return (
