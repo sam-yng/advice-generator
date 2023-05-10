@@ -22,10 +22,9 @@
         "@typescript-eslint"
     ],
     "rules": {
-        "prettier/prettier": "error",
         "arrow-body-style": "off",
         "prefer-arrow-callback": "off",
-        "indent": [2],
+        "indent": ["error", 2],
         "react/function-component-definition": "off",
         "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".ts"] }],
         "import/extensions": "off",
